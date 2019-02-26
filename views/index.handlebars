@@ -1,34 +1,51 @@
 <h1>Burger Time!</h1>
 
-<h2>Burgers not eaten yet..</h2>
+<h2>Lets eat!</h2>
 
 <ul>
   {{#each burgers}}
-    {{#unless devoured}}
-      {{> burgers/burger-block devoured=true}}
-    {{/unless}}
-  {{/each}}
+    {{#unless this.devoured}}
+      <li>
+ {{this.burger_name}}
 </ul>
 
-<h2>Thank you for eating me!!!!</h2>
-
-<ul>
-  {{#each burgers}}
-    {{#if devoured}}
-      {{> burgers/burger-block devoured=false}}
-    {{/if}}
-  {{/each}}
-</ul>
+<button class="change-eaten" data-id="{{this.id}}" data-eaten="{{this.devoured}}">
+            {{#if this.devoured}}You ate me!{else}}Please eat me!{{/if}}
+          </button>
+          </li>
+        {{/unless}}
+      {{/each}}
+    </ul>
+  </div>
 
 <h2>Add a Burger</h2>
 <form class="create-form">
 
   <div class="form-group">
-    <label for="ca">Name</label>
-    <input type="text" id="ca" name="name">
+    <label for="ca">Burger Name:</label>
+    <input type="text" id="brgr" name="burger_name">
   </div>
 
  
 
   <button type="submit">Submit</button>
 </form>
+
+
+
+    <h2>Burgers that have been eaten</h2>
+    <ul>
+      {{#each burgers}}
+        {{#if devoured}}
+          <li>
+          {{this.burger_name}}
+
+          <button class="change-eaten" data-id="{{this.id}}" data-eaten="{{this.devoured}}">
+            {{#if this.devoured}}You ate me!{{else}}Please eat me!{{/if}}
+          </button>
+          </li>
+        {{/if}}
+      {{/each}}
+    </ul>
+  </div>
+</div>
